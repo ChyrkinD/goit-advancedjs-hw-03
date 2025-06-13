@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export async function fetchPhotosByQuery(searchedQuery) {
   const requestParams = new URLSearchParams({
     key: '50730122-93fdb989224721eaf9512ab49',
@@ -7,11 +9,11 @@ export async function fetchPhotosByQuery(searchedQuery) {
     safesearch: true,
   });
 
-  const response = await fetch(`https://pixabay.com/api/?${requestParams}`);
+  const response = await axios.get(`https://pixabay.com/api/?${requestParams}`);
   if (!response.ok) {
     throw new Error(response.status);
   }
 
-  const data = await response.json();
+  const data = await response.data;
   return data.hits;
 }
