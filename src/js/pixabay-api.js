@@ -10,10 +10,7 @@ export async function fetchPhotosByQuery(searchedQuery) {
   });
 
   const response = await axios.get(`https://pixabay.com/api/?${requestParams}`);
-  if (!response.ok) {
-    throw new Error(response.status);
-  }
 
-  const data = await response.data;
+  const data = response.data;
   return data.hits;
 }
